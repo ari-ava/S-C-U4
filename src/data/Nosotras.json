@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "nombre": "Sasha Manihuari",
+    "objetivo": "Explorar nuevas formas de aprendizaje",
+    "edad": 15,
+    "sueño": "Ser investigadora en educación",
+    "imagen": "src/assets/img/sasha2.jpg"
+  },
+
+  {
+    "id": 2,
+    "nombre": "Akari Avalos",
+    "objetivo": "Crear proyectos digitales educativos",
+    "edad": 15,
+    "sueño": "Ser desarrolladora de plataformas innovadoras",
+    "imagen": "src/assets/img/ari.jpg"
+  },
+  
+  {
+    "id": 3,
+    "nombre": "Yaiza",
+    "objetivo": "Diseñar contenidos interactivos",
+    "edad": 17,
+    "sueño": "Ser creadora de plataformas educativas",
+    "imagen": "src/assets/img/Yaiza2.jpg"
+  }
+]

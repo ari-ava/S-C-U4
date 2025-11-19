@@ -1,0 +1,20 @@
+[
+  {
+    "id": 3,
+    "nombre": "✨ Ana López",
+    "texto": "Fue una experiencia transformadora. Aprendí muchísimo y conocí personas increíbles.",
+    "imagen": "/assets/img/persona3.png"
+  },
+  {
+    "id": 2,
+    "nombre": "🌟 Carlos Méndez",
+    "texto": "Me sentí acompañado en todo momento. Repetiría sin pensarlo.",
+    "imagen": "/assets/img/persona2.png"
+  },
+  {
+    "id": 1,
+    "nombre": "💬 Valeria Torres",
+    "texto": "El equipo fue súper profesional y cercano. ¡Gracias por todo!",
+    "imagen": "/assets/img/persona3.png"
+  }
+]

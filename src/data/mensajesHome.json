@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "titulo": "🌱 Cultiva tu mente",
+    "descripcion": "Cada día es una nueva oportunidad para aprender algo que te acerque a tus sueños."
+  },
+  {
+    "id": 2,
+    "titulo": "💡 Comparte tu conocimiento",
+    "descripcion": "El conocimiento crece cuando se comparte. Sé la inspiración de otros."
+  },
+  {
+    "id": 3,
+    "titulo": "🎯 Crece con propósito",
+    "descripcion": "Aprender no solo es acumular datos, sino descubrir lo que puedes lograr con ellos."
+  },
+  {
+    "id": 4,
+    "titulo": "🌍 Comunidad de aprendizaje",
+    "descripcion": "Aquí todos aprendemos juntos. ¡Explora, pregunta y aporta tus ideas!"
+  }
+]
