@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../Components/Layout";
-import { db } from "../firebase";
 import {
   collection,
   query,

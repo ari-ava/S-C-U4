@@ -1,9 +1,8 @@
 import React from "react";
-import { motion } from "framer-motion";
 import Layout from "../Components/Layout";
 import planes from "../data/planes.json";
-import misionImg from "../assets/img/mision.png";
-import visionImg from "../assets/img/vision.png";
+import misionImg from "../assets/img/mision.jpg";
+import visionImg from "../assets/img/vision.jpg";
 
 const MisionVision = () => {
   return (

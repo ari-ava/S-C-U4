@@ -1,7 +1,8 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Layout from "../Components/Layout";
+import { motion } from "framer-motion";
+
 
 function lanzarConfeti() {
   // Confetti muy ligero sin librerías externas

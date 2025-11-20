@@ -1,7 +1,6 @@
 import React from "react";
 import equipo from "../data/Nosotras.json";
 import Layout from "../Components/Layout";
-import { motion } from "framer-motion";
 
 const Nosotras = () => {
   return (
