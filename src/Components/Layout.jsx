@@ -1,11 +1,37 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
-
+import { auth, db } from "../firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 export default function Layout({ children }) {
   const [open, setOpen] = useState(false);
+  const [usuario, setUsuario] = useState(null);
+
+  // Detectar usuario logueado
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const docRef = doc(db, "usuarios", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setUsuario({ uid: user.uid, ...docSnap.data() });
+        } else {
+          setUsuario({ uid: user.uid, nombre: "Usuario", rol: "desconocido" });
+        }
+      } else {
+        setUsuario(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    setUsuario(null);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-orange-50">
@@ -15,9 +41,11 @@ export default function Layout({ children }) {
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
           {/* LOGO */}
-          <Link to="/" className="text-2xl font-bold text-orange-700">
-            Sembrando Conocimientos
-          </Link>
+          {!usuario && (
+            <Link to="/" className="text-2xl font-bold text-orange-700">
+              Sembrando Conocimientos
+            </Link>
+          )}
 
           {/* NAV DESKTOP */}
           <nav className="hidden md:flex gap-8 text-gray-700 font-medium">
@@ -30,13 +58,32 @@ export default function Layout({ children }) {
             <Link to="/catalogo" className="hover:text-orange-600 transition">Catalogo</Link>
           </nav>
 
-          {/* LOGIN BUTTON */}
-          <Link
-            to="/login"
-            className="hidden md:block bg-orange-500 text-white px-4 py-2 rounded-lg shadow hover:bg-orange-600 transition"
-          >
-            Iniciar sesión
-          </Link>
+          {/* LOGIN O PERFIL */}
+          {!usuario ? (
+            <Link
+              to="/login"
+              className="hidden md:block bg-orange-500 text-white px-4 py-2 rounded-lg shadow hover:bg-orange-600 transition"
+            >
+              Iniciar sesión
+            </Link>
+          ) : (
+            <div className="hidden md:flex items-center gap-3">
+              <span className="text-orange-700 font-semibold">
+                {usuario.nombre} ({usuario.rol})
+              </span>
+              <img
+                src="/assets/img/avatar.png"
+                alt="Avatar"
+                className="h-10 w-10 rounded-full border-2 border-orange-400"
+              />
+              <button
+                onClick={handleLogout}
+                className="bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-600"
+              >
+                Cerrar sesión
+              </button>
+            </div>
+          )}
 
           {/* MOBILE MENU BUTTON */}
           <button
@@ -58,13 +105,25 @@ export default function Layout({ children }) {
             <Link to="/catalogo" className="hover:text-orange-600 transition">Catalogo</Link>
             <Link to="/contactanos" onClick={() => setOpen(false)} className="block">Contáctanos</Link>
 
-            <Link
-              to="/login"
-              onClick={() => setOpen(false)}
-              className="block bg-orange-500 text-white text-center py-2 rounded-lg shadow mt-2"
-            >
-              Iniciar sesión
-            </Link>
+            {!usuario ? (
+              <Link
+                to="/login"
+                onClick={() => setOpen(false)}
+                className="block bg-orange-500 text-white text-center py-2 rounded-lg shadow mt-2"
+              >
+                Iniciar sesión
+              </Link>
+            ) : (
+              <div className="flex items-center gap-2 mt-2">
+                <span className="text-orange-700 font-semibold">{usuario.nombre}</span>
+                <button
+                  onClick={() => { handleLogout(); setOpen(false); }}
+                  className="bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-600"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         )}
       </header>
@@ -82,11 +141,9 @@ export default function Layout({ children }) {
       {/* FOOTER */}
       <footer className="bg-white border-t border-orange-200 py-6">
         <div className="max-w-7xl mx-auto px-6 text-center text-gray-600">
-
           <p className="font-semibold text-orange-700 mb-1">
             Sembrando Conocimientos © {new Date().getFullYear()}
           </p>
-
           <p className="text-sm">Hecho con dedicación y creatividad ✨</p>
         </div>
       </footer>

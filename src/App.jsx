@@ -7,9 +7,8 @@ import Testimonios from "./pages/Testimonios";
 import Contactanos from "./pages/Contactanos";
 import Foro from "./pages/Foro";
 import Login from "./pages/Login";
-import CursoDetalle from "./pages/CursoDetalle";
 import Catalogo from "./pages/Catalogo";
-import Register from "./pages/Register";
+import Register from "./pages/Register"
 
 export default function App() {
   return (
@@ -20,13 +19,11 @@ export default function App() {
           <Route path="/nosotras" element={<Nosotras />} />
           <Route path="/mision-vision" element={<MisionVision />} />
           <Route path="/foro" element={<Foro />} />
-          <Route path="/cursodetalle" element={<CursoDetalle />} />
           <Route path="/testimonios" element={<Testimonios />} />
           <Route path="/contactanos" element={<Contactanos />} />
           <Route path="/login" element={<Login />} />
           <Route path="/catalogo" element={<Catalogo />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/contactanos" element={<Contactanos />} />
         </Routes>
       </Layout>
     </Router>
