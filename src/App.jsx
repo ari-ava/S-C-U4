@@ -5,7 +5,7 @@ import Nosotras from "./pages/Nosotras";
 
 import MisionVision from "./pages/MisionVision";
 import Testimonios from "./pages/Testimonios";
-import Foro from "./pages/Foro";
+
 import Contactanos from "./pages/Contactanos";
 import NotAuthorized from "./pages/NotAuthorized";
 import Login from "./pages/Login";
