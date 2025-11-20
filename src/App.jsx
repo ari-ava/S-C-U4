@@ -9,6 +9,7 @@ import Foro from "./pages/Foro";
 import Login from "./pages/Login";
 import CursoDetalle from "./pages/CursoDetalle";
 import Catalogo from "./pages/Catalogo";
+import Register from "./pages/Register";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/contactanos" element={<Contactanos />} />
           <Route path="/login" element={<Login />} />
           <Route path="/catalogo" element={<Catalogo />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Layout>
     </Router>

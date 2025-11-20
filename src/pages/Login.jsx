@@ -1,179 +1,88 @@
-import { useState, useEffect } from "react";
-import { auth, db } from "../firebase.js";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged
-} from "firebase/auth";
-import { doc, setDoc, getDoc } from "firebase/firestore";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+// src/pages/Login.jsx
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { auth, db } from "../firebase.js"; // tu archivo de Firebase
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 export default function Login() {
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [role, setRole] = useState("estudiante");
-  const [isRegister, setIsRegister] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-  const [showPass, setShowPass] = useState(false);
-
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // 🔥 Autologin: si ya inició sesión, lo redirige automáticamente
-  useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) return;
-
-      const snap = await getDoc(doc(db, "users", user.uid));
-      if (!snap.exists()) return;
-
-      const userRole = snap.data().role;
-
-      redirectByRole(userRole);
-    });
-  }, []);
-
-  // Función que redirige según el rol
-  function redirectByRole(r) {
-    if (r === "creadora") navigate("/dashboard-creadoras");
-    else if (r === "profesor") navigate("/dashboard-profes");
-    else if (r === "estudiante") navigate("/dashboard-estudiantes");
-    else navigate("/");
-  }
-
-  // 🔒 Validación fuerte de contraseña
-  function validatePassword(p) {
-    const regex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*._-]).{8,}$/;
-    return regex.test(p);
-  }
-
-  async function handleSubmit(e) {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setErrorMsg("");
+    setError(null);
 
     try {
-      // Validación antes de Firebase
-      if (isRegister && !validatePassword(pass)) {
-        throw new Error(
-          "La contraseña debe tener mínimo 8 caracteres, 1 mayúscula, 1 minúscula, 1 número y 1 símbolo."
-        );
-      }
+      // iniciar sesión con Firebase Auth
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
-      if (isRegister) {
-        // Crear usuario
-        const res = await createUserWithEmailAndPassword(auth, email, pass);
+      // traer el usuario desde Firestore
+      const userDocRef = doc(db, "usuarios", user.uid);
+      const userSnap = await getDoc(userDocRef);
 
-        // Crear perfil en Firestore
-        await setDoc(doc(db, "users", res.user.uid), {
-          email,
-          role,
-          createdAt: new Date(),
-        });
+      if (userSnap.exists()) {
+        const userData = userSnap.data();
+        console.log("Usuario logueado:", userData);
 
-        alert("Cuenta creada con éxito ✨");
+        // redirigir según rol o solo a home
+        navigate("/foro"); // por ejemplo, al foro
       } else {
-        // Iniciar sesión
-        const res = await signInWithEmailAndPassword(auth, email, pass);
-
-        const snap = await getDoc(doc(db, "users", res.user.uid));
-        if (!snap.exists()) {
-          throw new Error("El perfil del usuario no existe.");
-        }
-
-        redirectByRole(snap.data().role);
+        setError("Usuario no encontrado en la base de datos.");
       }
     } catch (err) {
-      setErrorMsg(err.message);
+      console.error(err);
+      setError("Correo o contraseña incorrectos.");
     }
-
-    setLoading(false);
-  }
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center from-orange-200 to-orange-50">
-      <motion.form
-        onSubmit={handleSubmit}
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-orange-200"
-      >
-        <h2 className="text-3xl font-bold mb-6 text-center text-orange-700">
-          {isRegister ? "Crear cuenta ✨" : "Iniciar sesión 🔐"}
-        </h2>
 
-        {errorMsg && (
-          <div className="mb-4 bg-red-100 text-red-700 p-3 rounded-lg text-center">
-            {errorMsg}
-          </div>
-        )}
+      <main className="min-h-screen flex items-center justify-center bg-orange-50">
+        <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+          <h1 className="text-2xl font-bold text-orange-700 mb-6 text-center">Iniciar Sesión</h1>
 
-        {/* Email */}
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          className="w-full p-3 mb-4 border rounded-lg focus:ring-2 focus:ring-orange-500"
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+          {error && (
+            <p className="bg-red-100 text-red-700 p-2 rounded mb-4 text-center">{error}</p>
+          )}
 
-        {/* Contraseña con botón mostrar */}
-        <div className="relative mb-4">
-          <input
-            type={showPass ? "text" : "password"}
-            placeholder="Contraseña"
-            className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500"
-            onChange={(e) => setPass(e.target.value)}
-            required
-          />
+          <form onSubmit={handleLogin} className="flex flex-col gap-4">
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="border p-3 rounded focus:ring-2 focus:ring-orange-400"
+              required
+            />
 
-          {/* Ojo */}
-          <span
-            className="absolute right-3 top-3 cursor-pointer text-gray-500"
-            onClick={() => setShowPass(!showPass)}
-          >
-            {showPass ? "🙈" : "👁️"}
-          </span>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="border p-3 rounded focus:ring-2 focus:ring-orange-400"
+              required
+            />
+
+            <button
+              type="submit"
+              className="bg-orange-500 text-white py-3 rounded-xl font-semibold hover:bg-orange-600 transition"
+            >
+              Iniciar sesión
+            </button>
+          </form>
+
+          <p className="mt-4 text-sm text-center text-gray-600">
+            ¿No tienes cuenta?{" "}
+            <Link to="/Register" className="text-orange-600 font-semibold hover:underline">
+              Regístrate aquí
+            </Link>
+          </p>
         </div>
-
-        {/* Roles solo si registra */}
-        {isRegister && (
-          <select
-            className="w-full p-3 mb-4 border rounded-lg focus:ring-2 focus:ring-orange-500"
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <option value="estudiante">Estudiante</option>
-            <option value="profesor">Profesor</option>
-            <option value="invitado">Invitado</option>
-            <option value="creadora">Creadora</option>
-          </select>
-        )}
-
-        <button
-          disabled={loading}
-          className={`w-full bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-lg shadow font-semibold transition ${
-            loading && "opacity-50 cursor-not-allowed"
-          }`}
-        >
-          {loading
-            ? "Procesando..."
-            : isRegister
-            ? "Crear cuenta"
-            : "Ingresar"}
-        </button>
-
-        {/* Cambiar modo */}
-        <p
-          onClick={() => setIsRegister(!isRegister)}
-          className="mt-5 text-center text-orange-700 cursor-pointer hover:underline"
-        >
-          {isRegister
-            ? "¿Ya tienes cuenta? Inicia sesión"
-            : "¿No tienes cuenta? Regístrate"}
-        </p>
-      </motion.form>
-    </div>
+      </main>
   );
 }
