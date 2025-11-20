@@ -1,19 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Layout from "../Components/Layout";
+import React, { useState } from "react";
+import testimoniosData from "../data/testimonios.json";
 
-const Testimonios = () => {
-  const [testimonios, setTestimonios] = useState([]);
-
-  useEffect(() => {
-    fetch("/data/testimonios.json")
-      .then((res) => res.json())
-      .then((data) => setTestimonios(data))
-      .catch((err) => console.error("Error al cargar los testimonios:", err));
-  }, []);
+export default function Testimonios() {
+  const [testimonios] = useState(testimoniosData);
 
   return (
-
-    <main className=" from-orange-100 to-white min-h-screen">
+    <main className="from-orange-100 to-white min-h-screen">
       {/* Encabezado */}
       <section className="text-center p-6 bg-orange-200 shadow-md">
         <h1 className="text-2xl md:text-3xl font-bold text-orange-800">
@@ -24,7 +16,7 @@ const Testimonios = () => {
         </p>
       </section>
 
-      {/* testimonios */}
+      {/* Testimonios */}
       <section className="flex flex-col md:flex-row justify-center items-center gap-8 p-8 flex-wrap">
         {testimonios.map((testimonio) => (
           <div
@@ -44,8 +36,5 @@ const Testimonios = () => {
         ))}
       </section>
     </main>
-
   );
-};
-
-export default Testimonios;
+}

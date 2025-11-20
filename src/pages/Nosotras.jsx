@@ -1,10 +1,10 @@
 import React from "react";
 import equipo from "../data/Nosotras.json";
-import Layout from "../Components/Layout";
+import { motion } from "framer-motion";
+
 
 const Nosotras = () => {
   return (
-    <Layout>
       <div className="bg-orange-50 min-h-screen pb-20">
 
         {/* Título */}
@@ -98,7 +98,6 @@ const Nosotras = () => {
           </motion.div>
         </section>
       </div>
-    </Layout>
   );
 };
 

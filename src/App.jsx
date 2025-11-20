@@ -5,14 +5,14 @@ import Nosotras from "./pages/Nosotras";
 import MisionVision from "./pages/MisionVision";
 import Testimonios from "./pages/Testimonios";
 import Contactanos from "./pages/Contactanos";
-import Foro from "./pages/Foro"
+import Foro from "./pages/Foro";
 
-function App() {
+export default function App() {
   return (
     <Router>
       <Layout>
         <Routes>
-          <Route path="" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/nosotras" element={<Nosotras />} />
           <Route path="/mision-vision" element={<MisionVision />} />
           <Route path="/foro" element={<Foro />} />
@@ -23,5 +23,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;

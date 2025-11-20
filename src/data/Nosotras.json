@@ -7,7 +7,7 @@
     "personalidad": "Curiosa, analítica y muy reflexiva. Siempre buscando entender cómo aprenden las personas y cómo mejorar la educación.",
     "visionFuturo": "Sueña con que Sembrando Conocimientos se convierta en una comunidad donde aprender sea accesible, humano y transformador.",
     "frase": "La educación cambia vidas cuando aprende a escuchar a quienes la necesitan.",
-    "imagen": "src/assets/img/sasha2.jpg"
+    "imagen": "public/assets/img/sasha2.jpg"
   },
 
   {
@@ -18,7 +18,7 @@
     "personalidad": "Creativa, soñadora y determinada. Le encanta transformar ideas en experiencias digitales hermosas y accesibles.",
     "visionFuturo": "Imagina Sembrando Conocimientos como una gran plataforma educativa, llena de herramientas gratuitas, cursos y espacios seguros para aprender.",
     "frase": "La tecnología también puede ser un abrazo para quienes aprenden.",
-    "imagen": "src/assets/img/ari.jpg"
+    "imagen": "public/assets/img/ari.jpg"
   },
 
   {
@@ -29,7 +29,7 @@
     "personalidad": "Empática, sensible y con una creatividad cálida. Busca siempre que todo lo educativo también se sienta cercano, bonito y entendible.",
     "visionFuturo": "Sueña con que Sembrando Conocimientos sea un espacio lleno de recursos visuales, dinámicos y amigables para todos.",
     "frase": "El conocimiento también se diseña para sentirse bonito y accesible.",
-    "imagen": "src/assets/img/Yaiza2.jpg"
+    "imagen": "public/assets/img/Yaiza2.jpg"
   }
 ]
 

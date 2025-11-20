@@ -16,7 +16,7 @@ export default function Layout({ children }) {
 
           {/* LOGO */}
           <Link to="/" className="text-2xl font-bold text-orange-700">
-            EduPlataforma ✨
+            Sembrando Conocimientos✨
           </Link>
 
           {/* NAV DESKTOP */}
@@ -24,7 +24,7 @@ export default function Layout({ children }) {
             <Link to="/" className="hover:text-orange-600 transition">Inicio</Link>
             <Link to="/nosotras" className="hover:text-orange-600 transition">Nosotras</Link>
             <Link to="/mision-vision" className="hover:text-orange-600 transition">Misión y Visión</Link>
-            <Link to="/contacto" className="hover:text-orange-600 transition">Contáctanos</Link>
+            <Link to="/contactanos" className="hover:text-orange-600 transition">Contáctanos</Link>
             <Link to="/testimonios" className="hover:text-orange-600 transition">Testimonios</Link>
             <Link to="/foro" className="hover:text-orange-600 transition">Foro</Link>
           </nav>
@@ -52,7 +52,7 @@ export default function Layout({ children }) {
             <Link to="/" onClick={() => setOpen(false)} className="block">Inicio</Link>
             <Link to="/nosotras" onClick={() => setOpen(false)} className="block">Nosotras</Link>
             <Link to="/mision-vision" onClick={() => setOpen(false)} className="block">Misión y Visión</Link>
-            <Link to="/contacto" onClick={() => setOpen(false)} className="block">Contáctanos</Link>
+            <Link to="/contactanos" onClick={() => setOpen(false)} className="block">Contáctanos</Link>
             <Link to="/testimonios" onClick={() => setOpen(false)} className="block">Testimonios</Link>
             <Link to="/foro" onClick={() => setOpen(false)} className="block">Foro</Link>
 
@@ -82,7 +82,7 @@ export default function Layout({ children }) {
         <div className="max-w-7xl mx-auto px-6 text-center text-gray-600">
 
           <p className="font-semibold text-orange-700 mb-1">
-            EduPlataforma © {new Date().getFullYear()}
+            Sembrando Conocimientos © {new Date().getFullYear()}
           </p>
 
           <p className="text-sm">Hecho con dedicación y creatividad ✨</p>

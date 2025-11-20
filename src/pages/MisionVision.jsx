@@ -1,12 +1,10 @@
 import React from "react";
-import Layout from "../Components/Layout";
+import { motion } from "framer-motion";
 import planes from "../data/planes.json";
-import misionImg from "../assets/img/mision.jpg";
-import visionImg from "../assets/img/vision.jpg";
+
 
 const MisionVision = () => {
   return (
-    <Layout>
       <main className="max-w-6xl mx-auto p-6 font-sans">
 
         {/* Título principal */}
@@ -27,10 +25,11 @@ const MisionVision = () => {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex flex-col md:flex-row items-center gap-8 bg-orange-50 p-8 rounded-2xl shadow-lg border border-orange-200"
+            className="flex flex-col md:flex-row
+            items-center gap-8 bg-orange-50 p-8 rounded-2xl shadow-lg border border-orange-200"
           >
             <img
-              src={misionImg}
+              src="public/assets/img/mision.jpg"
               alt="Imagen misión"
               className="w-64 rounded-xl shadow-md"
             />
@@ -57,7 +56,7 @@ const MisionVision = () => {
             className="flex flex-col md:flex-row-reverse items-center gap-8 bg-orange-50 p-8 rounded-2xl shadow-lg border border-orange-200"
           >
             <img
-              src={visionImg}
+              src="public/assets/img/vision.jpg"
               alt="Imagen visión"
               className="w-64 rounded-xl shadow-md"
             />
@@ -122,7 +121,6 @@ const MisionVision = () => {
         </section>
 
       </main>
-    </Layout>
   );
 };
 

@@ -3,18 +3,18 @@
     "id": 1,
     "nombre": "💬 Valeria Torres",
     "texto": "El equipo fue súper profesional, amable y claro. Me ayudaron a avanzar más de lo que imaginaba.",
-    "imagen": "/assets/img/persona1.png"
+    "imagen": "/public/assets/img/persona1.png"
   },
   {
     "id": 2,
     "nombre": "🌟 Carlos Méndez",
     "texto": "Me sentí acompañado en todo momento. Su plataforma es de las más humanas que he visto.",
-    "imagen": "/assets/img/persona2.png"
+    "imagen": "public//assets/img/persona2.png"
   },
   {
     "id": 3,
     "nombre": "✨ Ana López",
     "texto": "Una experiencia transformadora. Aprendí muchísimo y encontré motivación para seguir estudiando.",
-    "imagen": "/assets/img/persona3.png"
+    "imagen": "public//assets/img/persona3.png"
   }
 ]

@@ -1,11 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Layout from "../Components/Layout";
 import { motion } from "framer-motion";
-
+import { Link } from "react-router-dom";
 
 function lanzarConfeti() {
-  // Confetti muy ligero sin librerías externas
   const colors = ["#FFB27A", "#FF8A65", "#FFD7C2", "#FFEED8", "#FFB3A7"];
   const count = 45;
   const canvas = document.createElement("canvas");
@@ -45,7 +42,6 @@ function lanzarConfeti() {
       ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
       ctx.restore();
     });
-    // stop after ~3.5s
     if (t < 3500) {
       rafId = requestAnimationFrame(draw);
     } else {
@@ -58,82 +54,77 @@ function lanzarConfeti() {
 
 export default function Home() {
   return (
-    <Layout>
-      <div className=" from-orange-50 to-orange-100 min-h-screen flex items-center">
-        <div className="max-w-5xl mx-auto w-full px-6 py-24 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    <div className="from-orange-50 to-orange-100 min-h-screen flex items-center">
+      <div className="max-w-5xl mx-auto w-full px-6 py-24 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
-          {/* Texto breve */}
-          <motion.div
-            initial={{ opacity: 0, x: -12 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex flex-col gap-6"
-          >
-            <h1 className="text-4xl md:text-5xl font-extrabold text-orange-700 leading-tight">
-              Sembrando Conocimientos
-            </h1>
+        {/* Texto */}
+        <motion.div
+          initial={{ opacity: 0, x: -12 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="flex flex-col gap-6"
+        >
+          <h1 className="text-4xl md:text-5xl font-extrabold text-orange-700 leading-tight">
+            Sembrando Conocimientos
+          </h1>
 
-            <p className="text-gray-700 text-lg max-w-md">
-              Una plataforma creada con cariño por estudiantes para estudiantes:
-              recursos claros, cursos gratuitos y una comunidad que acompaña tu aprendizaje.
-            </p>
+          <p className="text-gray-700 text-lg max-w-md">
+            Una plataforma creada con cariño por estudiantes para estudiantes:
+            recursos claros, cursos gratuitos y una comunidad que acompaña tu aprendizaje.
+          </p>
 
-            <div className="flex gap-3">
-              <Link
-                to="/foro"
-                className="bg-orange-500 text-white px-5 py-3 rounded-xl shadow hover:bg-orange-600 transition font-semibold"
-              >
-                🌱 Explorar cursos
-              </Link>
+          <div className="flex gap-3">
+            <Link
+              to="/foro"
+              className="bg-orange-500 text-white px-5 py-3 rounded-xl shadow hover:bg-orange-600 transition font-semibold"
+            >
+              🌱 Explorar cursos
+            </Link>
 
-              <Link
-                to="/login"
-                className="bg-white border border-orange-200 text-orange-700 px-5 py-3 rounded-xl hover:bg-orange-50 transition font-medium"
-              >
-                Iniciar sesión
-              </Link>
+            <Link
+              to="/login"
+              className="bg-white border border-orange-200 text-orange-700 px-5 py-3 rounded-xl hover:bg-orange-50 transition font-medium"
+            >
+              Iniciar sesión
+            </Link>
 
-              <button
-                onClick={() => {
-                  lanzarConfeti();
-                }}
-                className="bg-amber-100 border border-orange-200 text-orange-700 px-4 py-3 rounded-xl hover:bg-amber-200 transition font-medium"
-                title="Celebrar"
-              >
-                🎉 Celebrar
-              </button>
-            </div>
-          </motion.div>
+            <button
+              onClick={lanzarConfeti}
+              className="bg-amber-100 border border-orange-200 text-orange-700 px-4 py-3 rounded-xl hover:bg-amber-200 transition font-medium"
+              title="Celebrar"
+            >
+              🎉 Celebrar
+            </button>
+          </div>
+        </motion.div>
 
-          {/* Imagenes (usa tus rutas locales) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="grid grid-cols-2 gap-4"
-          >
-            {/* Reemplaza las rutas por tus imágenes (assets). */}
-            <img
-              src="/assets/img/hero1.jpg"
-              alt="Ilustración 1"
-              className="w-full h-40 object-cover rounded-2xl shadow-md border border-orange-100"
-            />
-            <img
-              src="/assets/img/hero2.jpg"
-              alt="Ilustración 2"
-              className="w-full h-40 object-cover rounded-2xl shadow-md border border-orange-100"
-            />
-            <img
-              src="/assets/img/hero3.jpg"
-              alt="Ilustración 3"
-              className="w-full h-40 object-cover rounded-2xl shadow-md border border-orange-100"
-            />
-            <img
-              src="/assets/img/hero4.jpg"
-              alt="Ilustración 4"
-              className="w-full h-40 object-cover rounded-2xl shadow-md border border-orange-100"
-            />
-          </motion.div>
-        </div>
+        {/* Imagenes */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="grid grid-cols-2 gap-4"
+        >
+          <img
+            src="/public/assets/img/jovenes.jpeg"
+            alt="Ilustración 1"
+            className="w-full h-40 object-cover rounded-2xl shadow-md border border-orange-100"
+          />
+          <img
+            src="/public/assets/img/niños.jpeg"
+            alt="Ilustración 2"
+            className="w-full h-40 object-cover rounded-2xl shadow-md border border-orange-100"
+          />
+          <img
+            src="/public/assets/img/libros.jpeg"
+            alt="Ilustración 3"
+            className="w-full h-40 object-cover rounded-2xl shadow-md border border-orange-100"
+          />
+          <img
+            src="/public/assets/img/creatividad.jpeg"
+            alt="Ilustración 4"
+            className="w-full h-40 object-cover rounded-2xl shadow-md border border-orange-100"
+          />
+        </motion.div>
       </div>
-    </Layout>
+    </div>
   );
 }
