@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./Components/Layout";
 import Home from "./pages/Home";
 import Nosotras from "./pages/Nosotras";
+
+import MisionVision from "./pages/MisionVision";
 import Testimonios from "./pages/Testimonios";
 import Foro from "./pages/Foro";
 import Contactanos from "./pages/Contactanos";
