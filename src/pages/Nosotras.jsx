@@ -1,56 +1,105 @@
 import React from "react";
 import equipo from "../data/Nosotras.json";
 import Layout from "../Components/Layout";
+import { motion } from "framer-motion";
 
 const Nosotras = () => {
   return (
+    <Layout>
+      <div className="bg-orange-50 min-h-screen pb-20">
 
-    <div className="bg-orange-50 min-h-screen">
+        {/* Título */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center pt-12 pb-4"
+        >
+          <h1 className="text-4xl font-bold text-orange-700 drop-shadow-sm">
+            🌸 Nuestro Equipo 🌸
+          </h1>
+          <p className="text-gray-700 mt-3 text-lg max-w-2xl mx-auto">
+            Somos tres chicas creando una plataforma educativa accesible, humana y llena de oportunidades.
+          </p>
+        </motion.div>
 
-      <section className="container mx-auto py-10 px-6">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {equipo.map((miembro) => (
-            <div
-              key={miembro.id}
-              className="bg-white rounded-2xl shadow-md overflow-hidden hover:scale-105 transition-transform duration-300 flex flex-col"
-            >
-              <img
-                src={miembro.imagen}
-                alt={miembro.nombre}
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-5 text-center flex-1 flex flex-col justify-between">
-                <div>
-                  <h5 className="text-xl font-bold text-orange-700">
-                    {miembro.nombre}
-                  </h5>
-                  <p><strong>Objetivo:</strong> {miembro.objetivo}</p>
-                  <p><strong>Edad:</strong> {miembro.edad}</p>
-                  <p><strong>Sueño:</strong> {miembro.sueño}</p>
+        {/* Cards del equipo */}
+        <section className="container mx-auto px-6 py-10">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            {equipo.map((miembro, index) => (
+              <motion.div
+                key={miembro.id}
+                initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay: index * 0.15 }}
+                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all p-5 flex flex-col border border-orange-200"
+              >
+                {/* Imagen */}
+                <div className="w-full h-64 rounded-xl overflow-hidden">
+                  <img
+                    src={miembro.imagen}
+                    alt={miembro.nombre}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
 
-        <div className="bg-white rounded-2xl shadow-md mt-12 p-8 text-center max-w-2xl mx-auto hover:shadow-lg transition-all">
-          <h3 className="text-2xl font-bold text-orange-700 mb-4">
-            🌱 Sembrando Conocimientos 🌱
-          </h3>
-          <p className="text-gray-700 font-medium mb-2">
-            Creado desde 2025, para brindar herramientas y materiales accesibles,
-            confiables y gratuitos que ayuden a los estudiantes a desarrollar su máximo potencial académico.
-          </p>
-          <p className="font-semibold text-orange-700">
-            ¡Juntos sembramos el futuro de la educación!
-          </p>
+                {/* Info */}
+                <div className="text-center mt-5 flex flex-col gap-3 flex-1">
+                  <h2 className="text-2xl font-bold text-orange-700">
+                    {miembro.nombre}
+                  </h2>
 
-          <button className="mt-4 bg-orange-400 text-white px-5 py-2 rounded-full hover:bg-orange-500 transition">
-            ✨ Bienvenidas/os ✨
-          </button>
-        </div>
-      </section>
-    </div>
+                  <p className="text-gray-600 text-sm italic">
+                    "{miembro.frase}"
+                  </p>
+
+                  <p className="text-gray-700 text-sm">
+                    <strong>Edad:</strong> {miembro.edad}
+                  </p>
+
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    <strong>Sueño:</strong> {miembro.sueño}
+                  </p>
+
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    <strong>Personalidad:</strong> {miembro.personalidad}
+                  </p>
+
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    <strong>Visión en Sembrando Conocimientos:</strong> {miembro.visionFuturo}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bloque bonito */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="bg-white rounded-2xl shadow-md mt-16 p-10 text-center max-w-3xl mx-auto border border-orange-200"
+          >
+            <h3 className="text-3xl font-semibold text-orange-700 mb-4">
+              🌱 Sembrando Conocimientos 🌱
+            </h3>
+
+            <p className="text-gray-700 text-lg mb-3">
+              Un proyecto hecho con cariño para estudiantes que buscan aprender de manera accesible,
+              cercana y acompañada. Aquí, cada recurso nace desde nuestras experiencias,
+              nuestro esfuerzo y nuestros sueños.
+            </p>
+
+            <p className="font-semibold text-orange-700 text-lg">
+              ¡Gracias por acompañarnos en este camino educativo! 🧡📚
+            </p>
+
+            <button className="mt-5 bg-orange-500 text-white px-6 py-3 rounded-full hover:bg-orange-600 transition shadow-md">
+              ✨ Bienvenidas/os ✨
+            </button>
+          </motion.div>
+        </section>
+      </div>
+    </Layout>
   );
 };
 

@@ -13,7 +13,7 @@ const Testimonios = () => {
 
   return (
 
-    <main className="bg-gradient-to-b from-orange-100 to-white min-h-screen">
+    <main className=" from-orange-100 to-white min-h-screen">
       {/* Encabezado */}
       <section className="text-center p-6 bg-orange-200 shadow-md">
         <h1 className="text-2xl md:text-3xl font-bold text-orange-800">
