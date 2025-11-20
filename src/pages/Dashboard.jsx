@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-// Firebase
 import { auth, db } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
@@ -15,21 +14,17 @@ const Dashboard = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [activeTab, setActiveTab] = useState("products");
 
-  // Rol del usuario
   const [userRole, setUserRole] = useState("invitado");
 
-  // Cargar productos del localStorage
   useEffect(() => {
     const savedProducts = localStorage.getItem("dashboard-products");
     if (savedProducts) setProducts(JSON.parse(savedProducts));
   }, []);
 
-  // Guardar productos en localStorage
   useEffect(() => {
     localStorage.setItem("dashboard-products", JSON.stringify(products));
   }, [products]);
 
-  // Detectar usuario logueado + su rol desde Firestore
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (user) => {
       if (!user) {
@@ -50,7 +45,6 @@ const Dashboard = () => {
     return () => unsub();
   }, []);
 
-  // Permisos según rol
   const permisos = {
     creadora: {
       puedeCrear: true,
@@ -75,8 +69,6 @@ const Dashboard = () => {
   };
 
   const rol = permisos[userRole] || permisos.invitado;
-
-  // FUNCIONES -----------------------------------------------------
 
   const addProduct = (product) => {
     if (!rol.puedeCrear) {
@@ -131,10 +123,8 @@ const Dashboard = () => {
     setEditingProduct(null);
   };
 
-  // ---------------------------------------------------------------
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-blue-50 py-8 px-4">
+    <div className="min-h-screen from-orange-50 to-blue-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
