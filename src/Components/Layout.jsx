@@ -16,7 +16,7 @@ export default function Layout({ children }) {
 
           {/* LOGO */}
           <Link to="/" className="text-2xl font-bold text-orange-700">
-            Sembrando Conocimientos✨
+            Sembrando Conocimientos
           </Link>
 
           {/* NAV DESKTOP */}
@@ -27,6 +27,7 @@ export default function Layout({ children }) {
             <Link to="/contactanos" className="hover:text-orange-600 transition">Contáctanos</Link>
             <Link to="/testimonios" className="hover:text-orange-600 transition">Testimonios</Link>
             <Link to="/foro" className="hover:text-orange-600 transition">Foro</Link>
+            <Link to="/catalogo" className="hover:text-orange-600 transition">Catalogo</Link>
           </nav>
 
           {/* LOGIN BUTTON */}
@@ -55,6 +56,7 @@ export default function Layout({ children }) {
             <Link to="/contactanos" onClick={() => setOpen(false)} className="block">Contáctanos</Link>
             <Link to="/testimonios" onClick={() => setOpen(false)} className="block">Testimonios</Link>
             <Link to="/foro" onClick={() => setOpen(false)} className="block">Foro</Link>
+            <Link to="/catalogo" className="hover:text-orange-600 transition">Catalogo</Link>
 
             <Link
               to="/login"

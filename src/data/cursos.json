@@ -1,75 +1,34 @@
 [
   {
-    "id": "algebra",
-    "titulo": "Álgebra",
-    "categoria": "Matemática",
-    "descripcion": "Aprende expresiones, ecuaciones, factorización y resolución de problemas paso a paso.",
-    "imagen": "/assets/cursos/algebra.jpg"
+    "id": 1,
+    "title": "Taller: Escritura creativa",
+    "category": "Talleres",
+    "price": 0,
+    "description": "Sesión de 4 horas para aprender técnicas de escritura y narración creativa.",
+    "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
   },
   {
-    "id": "aritmetica",
-    "titulo": "Aritmética",
-    "categoria": "Matemática",
-    "descripcion": "Domina operaciones básicas, conjuntos numéricos y problemas frecuentes.",
-    "imagen": "/assets/cursos/aritmetica.jpg"
+    "id": 2,
+    "title": "Guía de estudio: Matemáticas básicas",
+    "category": "Recursos",
+    "price": 0,
+    "description": "PDF descargable con ejercicios y soluciones paso a paso.",
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80"
   },
   {
-    "id": "geometria",
-    "titulo": "Geometría",
-    "categoria": "Matemática",
-    "descripcion": "Figuras, áreas, perímetros y razonamiento espacial para todos los niveles.",
-    "imagen": "/assets/cursos/geometria.jpg"
+    "id": 3,
+    "title": "Mentoría 1:1",
+    "category": "Mentoría",
+    "price": 15,
+    "description": "Sesión personalizada de 60 minutos con un tutor experto.",
+    "image": "https://images.unsplash.com/photo-1554774853-9b0b5a7ddc2a?w=800&q=80"
   },
   {
-    "id": "trigonometria",
-    "titulo": "Trigonometría",
-    "categoria": "Matemática",
-    "descripcion": "Seno, coseno, tangente, identidades, ángulos y aplicaciones prácticas.",
-    "imagen": "/assets/cursos/trigonometria.jpg"
-  },
-
-  {
-    "id": "lenguaje",
-    "titulo": "Lenguaje",
-    "categoria": "Comunicación",
-    "descripcion": "Gramática, ortografía, vocabulario y comprensión para mejorar tu expresión.",
-    "imagen": "/assets/cursos/lenguaje.jpg"
-  },
-  {
-    "id": "comprension",
-    "titulo": "Comprensión Lectora",
-    "categoria": "Comunicación",
-    "descripcion": "Técnicas de lectura crítica y análisis de textos para potenciar tu interpretación.",
-    "imagen": "/assets/cursos/comprension.jpg"
-  },
-
-  {
-    "id": "historiaperu",
-    "titulo": "Historia del Perú",
-    "categoria": "Ciencias Sociales",
-    "descripcion": "Desde culturas preincaicas hasta la república actual. Línea del tiempo completa.",
-    "imagen": "/assets/cursos/historiaperu.jpg"
-  },
-  {
-    "id": "historiauniversal",
-    "titulo": "Historia Universal",
-    "categoria": "Ciencias Sociales",
-    "descripcion": "Hechos clave, guerras, civilizaciones antiguas y transformaciones mundiales.",
-    "imagen": "/assets/cursos/historiauniversal.jpg"
-  },
-
-  {
-    "id": "fisica",
-    "titulo": "Física",
-    "categoria": "Ciencia y Tecnología",
-    "descripcion": "Movimiento, energía, fuerza, electricidad, ondas y experimentos básicos.",
-    "imagen": "/assets/cursos/fisica.jpg"
-  },
-  {
-    "id": "quimica",
-    "titulo": "Química",
-    "categoria": "Ciencia y Tecnología",
-    "descripcion": "Átomos, enlaces, reacciones químicas y ejercicios resueltos.",
-    "imagen": "/assets/cursos/quimica.jpg"
+    "id": 4,
+    "title": "Workshop: Diseño de maquetas",
+    "category": "Talleres",
+    "price": 5,
+    "description": "Prácticas y tips para planificar y construir maquetas efectivas.",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80"
   }
 ]
