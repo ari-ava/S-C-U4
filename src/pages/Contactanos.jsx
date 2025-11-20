@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "../Components/Layout";
 import {motion} from "framer-motion";
 
 const Contactanos = () => {
@@ -51,9 +50,7 @@ const Contactanos = () => {
   };
 
   return (
-    <Route>
 
-    <Layout>
       <main className="min-h-screen from-orange-100 to-orange-50 flex flex-col items-center py-12 px-6">
 
         {/* ENCABEZADO */}
@@ -171,8 +168,6 @@ const Contactanos = () => {
           </div>
         </section>
       </main>
-    </Layout>
-    </Route>
   );
 };
 

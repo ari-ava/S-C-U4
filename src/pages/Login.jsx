@@ -1,88 +1,85 @@
-// src/pages/Login.jsx
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { auth, db } from "../firebase.js"; // tu archivo de Firebase
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(null);
+    setError("");
 
     try {
-      // iniciar sesión con Firebase Auth
+      // Iniciar sesión con Auth
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // traer el usuario desde Firestore
-      const userDocRef = doc(db, "usuarios", user.uid);
-      const userSnap = await getDoc(userDocRef);
+      // Obtener datos del usuario desde Firestore
+      const userDoc = await getDoc(doc(db, "usuarios", user.uid));
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
 
-      if (userSnap.exists()) {
-        const userData = userSnap.data();
-        console.log("Usuario logueado:", userData);
+        // Guardar info del usuario en localStorage o contexto si quieres
+        localStorage.setItem("user", JSON.stringify(userData));
 
-        // redirigir según rol o solo a home
-        navigate("/foro"); // por ejemplo, al foro
+        // Redirigir según rol o a home
+        navigate("/foro"); // o navigate("/") según quieras
       } else {
-        setError("Usuario no encontrado en la base de datos.");
+        setError("Usuario no encontrado en la base de datos");
       }
     } catch (err) {
       console.error(err);
-      setError("Correo o contraseña incorrectos.");
+      setError("Correo o contraseña incorrectos");
     }
   };
 
   return (
+    <div className="flex justify-center items-center min-h-screen bg-orange-50">
+      <form
+        onSubmit={handleLogin}
+        className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md"
+      >
+        <h2 className="text-2xl font-bold mb-6 text-orange-600">Iniciar Sesión</h2>
 
-      <main className="min-h-screen flex items-center justify-center bg-orange-50">
-        <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
-          <h1 className="text-2xl font-bold text-orange-700 mb-6 text-center">Iniciar Sesión</h1>
+        <input
+          type="email"
+          placeholder="Correo electrónico"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full mb-4 p-2 border rounded focus:ring-2 focus:ring-orange-400"
+        />
 
-          {error && (
-            <p className="bg-red-100 text-red-700 p-2 rounded mb-4 text-center">{error}</p>
-          )}
+        <input
+          type="password"
+          placeholder="Contraseña"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full mb-4 p-2 border rounded focus:ring-2 focus:ring-orange-400"
+        />
 
-          <form onSubmit={handleLogin} className="flex flex-col gap-4">
-            <input
-              type="email"
-              placeholder="Correo electrónico"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="border p-3 rounded focus:ring-2 focus:ring-orange-400"
-              required
-            />
+        <button
+          type="submit"
+          className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg transition"
+        >
+          Iniciar Sesión
+        </button>
 
-            <input
-              type="password"
-              placeholder="Contraseña"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="border p-3 rounded focus:ring-2 focus:ring-orange-400"
-              required
-            />
+        {error && <p className="text-red-500 mt-4">{error}</p>}
 
-            <button
-              type="submit"
-              className="bg-orange-500 text-white py-3 rounded-xl font-semibold hover:bg-orange-600 transition"
-            >
-              Iniciar sesión
-            </button>
-          </form>
-
-          <p className="mt-4 text-sm text-center text-gray-600">
-            ¿No tienes cuenta?{" "}
-            <Link to="/Register" className="text-orange-600 font-semibold hover:underline">
-              Regístrate aquí
-            </Link>
-          </p>
-        </div>
-      </main>
+        <p className="mt-4 text-sm text-gray-600">
+          ¿No tienes cuenta?{" "}
+          <a href="/register" className="text-orange-600 hover:underline">
+            Regístrate aquí
+          </a>
+        </p>
+      </form>
+    </div>
   );
-}
+};
+
+export default Login;

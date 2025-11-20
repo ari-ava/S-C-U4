@@ -53,10 +53,10 @@ export default function Layout({ children }) {
             <Link to="/" onClick={() => setOpen(false)} className="block">Inicio</Link>
             <Link to="/nosotras" onClick={() => setOpen(false)} className="block">Nosotras</Link>
             <Link to="/mision-vision" onClick={() => setOpen(false)} className="block">Misión y Visión</Link>
-            <Link to="/contactanos" onClick={() => setOpen(false)} className="block">Contáctanos</Link>
             <Link to="/testimonios" onClick={() => setOpen(false)} className="block">Testimonios</Link>
             <Link to="/foro" onClick={() => setOpen(false)} className="block">Foro</Link>
             <Link to="/catalogo" className="hover:text-orange-600 transition">Catalogo</Link>
+            <Link to="/contactanos" onClick={() => setOpen(false)} className="block">Contáctanos</Link>
 
             <Link
               to="/login"

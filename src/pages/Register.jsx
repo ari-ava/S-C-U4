@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { auth, db } from "../firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
+import { auth, db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
-export default function Register() {
+const Register = () => {
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rol, setRol] = useState("estudiante"); // default
+  const [rol, setRol] = useState("estudiante"); // Por defecto estudiante
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -16,45 +16,47 @@ export default function Register() {
     e.preventDefault();
     setError("");
 
-    if (!nombre || !email || !password || !rol) {
-      setError("Todos los campos son obligatorios.");
+    if (!nombre || !email || !password) {
+      setError("Todos los campos son obligatorios");
       return;
     }
 
     try {
-      // 1️⃣ Crear usuario en Firebase Auth
+      // Crear usuario en Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // 2️⃣ Guardar info del usuario en Firestore
+      // Guardar datos adicionales en Firestore
       await setDoc(doc(db, "usuarios", user.uid), {
         nombre,
         email,
         rol,
-        cursosAsignados: [], // inicialmente vacío
-        fechaRegistro: Timestamp.now()
+        cursosAsignados: [],
+        fechaRegistro: new Date().toISOString()
       });
 
-      // 3️⃣ Redirigir o mostrar mensaje
+      // Redirigir al login
       navigate("/login");
     } catch (err) {
       console.error(err);
-      setError(err.message);
+      setError("Ocurrió un error al registrarte");
     }
   };
 
   return (
-    <div className="max-w-md mx-auto mt-16 p-6 bg-white rounded-xl shadow-md">
-      <h1 className="text-2xl font-bold mb-4 text-orange-700">Registro</h1>
-      {error && <p className="text-red-500 mb-2">{error}</p>}
+    <div className="flex justify-center items-center min-h-screen bg-orange-50">
+      <form
+        onSubmit={handleRegister}
+        className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md"
+      >
+        <h2 className="text-2xl font-bold mb-6 text-orange-600">Registrarse</h2>
 
-      <form onSubmit={handleRegister} className="flex flex-col gap-4">
         <input
           type="text"
           placeholder="Nombre completo"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
-          className="border p-2 rounded"
+          className="w-full mb-4 p-2 border rounded focus:ring-2 focus:ring-orange-400"
         />
 
         <input
@@ -62,7 +64,7 @@ export default function Register() {
           placeholder="Correo electrónico"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="border p-2 rounded"
+          className="w-full mb-4 p-2 border rounded focus:ring-2 focus:ring-orange-400"
         />
 
         <input
@@ -70,13 +72,13 @@ export default function Register() {
           placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 rounded"
+          className="w-full mb-4 p-2 border rounded focus:ring-2 focus:ring-orange-400"
         />
 
         <select
           value={rol}
           onChange={(e) => setRol(e.target.value)}
-          className="border p-2 rounded"
+          className="w-full mb-4 p-2 border rounded focus:ring-2 focus:ring-orange-400"
         >
           <option value="estudiante">Estudiante</option>
           <option value="profesor">Profesor</option>
@@ -84,11 +86,22 @@ export default function Register() {
 
         <button
           type="submit"
-          className="bg-orange-500 text-white py-2 rounded hover:bg-orange-600 transition"
+          className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg transition"
         >
           Registrarse
         </button>
+
+        {error && <p className="text-red-500 mt-4">{error}</p>}
+
+        <p className="mt-4 text-sm text-gray-600">
+          ¿Ya tienes cuenta?{" "}
+          <a href="/login" className="text-orange-600 hover:underline">
+            Inicia sesión aquí
+          </a>
+        </p>
       </form>
     </div>
   );
-}
+};
+
+export default Register;

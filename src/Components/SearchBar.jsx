@@ -1,13 +1,15 @@
+// src/components/SearchBar.jsx
+import React from "react";
+
 function SearchBar({ onSearch }) {
   return (
     <input
       type="text"
-      placeholder="Buscar libro..."
+      placeholder="Buscar curso..."
       onChange={(e) => onSearch(e.target.value)}
-      style={{ padding: "8px", marginBottom: "10px", width: "100%" }}
+      className="border p-3 rounded-lg w-full mb-4"
     />
   );
 }
 
 export default SearchBar;
-
