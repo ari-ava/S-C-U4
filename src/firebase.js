@@ -1,11 +1,10 @@
-// Import the functions you need from the SDKs you need
+// Importa lo que necesitas de Firebase
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Tu configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDFxsTVl9pX_ibdXfWE9JfEVRkJ6l0gDMM",
   authDomain: "sembrando-conocimientos.firebaseapp.com",
@@ -13,9 +12,16 @@ const firebaseConfig = {
   storageBucket: "sembrando-conocimientos.firebasestorage.app",
   messagingSenderId: "780126530004",
   appId: "1:780126530004:web:f368ebc721c76dc78f0e41",
-  measurementId: "G-R4HE4KB7JK"
+  measurementId: "G-R4HE4KB7JK",
 };
 
-// Initialize Firebase
+// Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+// Inicializa Auth y Firestore
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+
+// Si quieres, también puedes exportar app y analytics
+export { app, analytics };
