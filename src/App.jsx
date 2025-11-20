@@ -9,7 +9,6 @@ import Testimonios from "./pages/Testimonios";
 import Contactanos from "./pages/Contactanos";
 import NotAuthorized from "./pages/NotAuthorized";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
 import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
