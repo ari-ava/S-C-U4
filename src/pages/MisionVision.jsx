@@ -5,6 +5,7 @@ import visionImg from "../assets/img/vision.jpg";
 import planes from "../data/planes.json";
 import Layout from "../Components/Layout";
 
+
 const MisionVision = () => {
   return (
 
